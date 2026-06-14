@@ -114,15 +114,66 @@ test("Paul skill 1 uses the 32 frame stardust burst sprite sheet", async () => {
   const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
 
   assert.match(html, /class="paul-skill1-sprite"/);
+  assert.match(styles, /--paul-skill-cycle-duration:\s*6200ms/);
   assert.match(styles, /--paul-skill1-frame-size:\s*313px/);
   assert.match(styles, /--paul-skill1-sheet-shift:\s*-10016px/);
   assert.match(styles, /--paul-skill1-cast-duration:\s*1280ms/);
+  assert.match(styles, /--paul-skill1-cycle-duration:\s*var\(--paul-skill-cycle-duration\)/);
   assert.match(styles, /paul_skill1_stardust_burst_32_std313_sheet_horizontal\.png/);
   assert.match(styles, /animation:\s*paul-skill1-frames var\(--paul-skill1-cast-duration\) steps\(32,\s*end\) infinite,\s*paul-skill1-window var\(--paul-skill1-cycle-duration\) linear infinite/);
   assert.match(styles, /@keyframes paul-skill1-frames/);
   assert.match(styles, /background-position:\s*var\(--paul-skill1-sheet-shift\) 0/);
   assert.doesNotMatch(styles, /calc\(var\(--paul-skill1-frame-size\) \* -32\)/);
   assert.match(styles, /@keyframes paul-skill1-window/);
+});
+
+test("Paul skill 2 uses the 16 frame starlight guard sprite sheet", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(html, /class="paul-skill2-sprite"/);
+  assert.match(styles, /--paul-skill2-frame-size:\s*400px/);
+  assert.match(styles, /--paul-skill2-sheet-shift:\s*-6400px/);
+  assert.match(styles, /--paul-skill2-cast-duration:\s*1320ms/);
+  assert.match(styles, /--paul-skill2-cycle-duration:\s*var\(--paul-skill-cycle-duration\)/);
+  assert.match(styles, /paul_skill2_starlight_guard_safe400_sheet_horizontal\.png/);
+  assert.match(styles, /animation:\s*paul-skill2-frames var\(--paul-skill2-cycle-duration\) steps\(1,\s*end\) infinite,\s*paul-skill2-window var\(--paul-skill2-cycle-duration\) cubic-bezier\(0\.2,\s*0\.72,\s*0\.22,\s*1\) infinite/);
+  assert.match(styles, /@keyframes paul-skill2-frames/);
+  assert.match(styles, /background-position:\s*var\(--paul-skill2-sheet-shift\) 0/);
+  assert.match(styles, /54\.8%\s*{\s*background-position:\s*-3200px 0;\s*}/s);
+  assert.match(styles, /@keyframes paul-skill2-window/);
+  assert.match(styles, /paul-base-visibility var\(--paul-skill2-cycle-duration\) linear infinite/);
+  assert.match(styles, /@keyframes paul-base-visibility/);
+});
+
+test("ultimate button triggers a 1.5 second cut-in illustration overlay", async () => {
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+  const game = await readFile(new URL("../src/game.js", import.meta.url), "utf8");
+  const bundle = await readFile(new URL("../src/game.bundle.js", import.meta.url), "utf8");
+
+  assert.match(html, /id="ultimateButton"/);
+  assert.match(html, /id="ultimateCutscene"/);
+  assert.match(html, /class="ultimate-cutscene"/);
+  assert.match(styles, /--ultimate-cutscene-duration:\s*1500ms/);
+  assert.match(styles, /paul_ultimate_cutin\.png/);
+  assert.match(styles, /\.ultimate-cutscene\s*{[^}]*z-index:\s*1/s);
+  assert.match(styles, /\.ultimate-cutscene::before\s*{[^}]*background:\s*rgba\(6,\s*7,\s*18,\s*0\.62\)/s);
+  assert.match(styles, /\.ultimate-cutscene\.is-playing\s*{[^}]*visibility:\s*visible/s);
+  assert.match(styles, /\.ultimate-cutscene\.is-playing::before\s*{[^}]*animation:\s*ultimate-backdrop-dim var\(--ultimate-cutscene-duration\) ease-out both/s);
+  assert.match(styles, /\.ultimate-cutscene\.is-playing \.ultimate-cutscene__image\s*{[^}]*animation:\s*ultimate-cutscene-in-out var\(--ultimate-cutscene-duration\) cubic-bezier\(0\.16,\s*0\.84,\s*0\.22,\s*1\) both/s);
+  assert.match(styles, /@keyframes ultimate-backdrop-dim/);
+  assert.match(styles, /@keyframes ultimate-cutscene-in-out/);
+  assert.match(styles, /\.top-hud,\s*\.stage-card,\s*\.skill-card,\s*\.upgrade-panel,\s*\.nav-item,\s*\.boss-count-card\s*{[^}]*z-index:\s*2/s);
+  assert.match(styles, /\.skill-bar\s*{[^}]*z-index:\s*3/s);
+  assert.match(styles, /\.bottom-nav\s*{[^}]*z-index:\s*4/s);
+  assert.match(game, /const ultimateButton = document\.querySelector\("#ultimateButton"\)/);
+  assert.match(game, /const ultimateCutscene = document\.querySelector\("#ultimateCutscene"\)/);
+  assert.match(game, /ULTIMATE_CUTSCENE_CLASS/);
+  assert.match(game, /playUltimateCutscene/);
+  assert.match(game, /ultimateButton\.addEventListener\("click", playUltimateCutscene\)/);
+  assert.match(bundle, /function playUltimateCutscene/);
+  assert.match(bundle, /ultimateButton\.addEventListener\("click", playUltimateCutscene\)/);
 });
 
 test("browser script wires upgrades, tab placeholders, local save, and offline rewards", async () => {

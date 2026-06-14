@@ -19,6 +19,10 @@ const upgradeListEl = document.querySelector("#upgradeList");
 const bottomNavEl = document.querySelector("#bottomNav");
 const offlineNoticeEl = document.querySelector("#offlineNotice");
 const settingsButton = document.querySelector("#settingsButton");
+const ultimateButton = document.querySelector("#ultimateButton");
+const ultimateCutscene = document.querySelector("#ultimateCutscene");
+
+const ULTIMATE_CUTSCENE_CLASS = "is-playing";
 
 let state = loadState();
 const offlineReward = calculateOfflineReward(state);
@@ -140,5 +144,22 @@ settingsButton.addEventListener("click", () => {
   };
   render();
 });
+
+function playUltimateCutscene() {
+  if (!ultimateCutscene) return;
+
+  ultimateCutscene.classList.remove(ULTIMATE_CUTSCENE_CLASS);
+  void ultimateCutscene.offsetWidth;
+  ultimateCutscene.classList.add(ULTIMATE_CUTSCENE_CLASS);
+}
+
+if (ultimateButton && ultimateCutscene) {
+  ultimateButton.addEventListener("click", playUltimateCutscene);
+  ultimateCutscene.addEventListener("animationend", (event) => {
+    if (event.animationName === "ultimate-cutscene-in-out") {
+      ultimateCutscene.classList.remove(ULTIMATE_CUTSCENE_CLASS);
+    }
+  });
+}
 
 render();

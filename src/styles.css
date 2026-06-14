@@ -19,10 +19,16 @@
   --paul-basic-attack-duration: 1350ms;
   --slime-basic-attack-duration: 1400ms;
   --paul-projectile-duration: 880ms;
+  --paul-skill-cycle-duration: 6200ms;
   --paul-skill1-frame-size: 313px;
   --paul-skill1-sheet-shift: -10016px;
   --paul-skill1-cast-duration: 1280ms;
-  --paul-skill1-cycle-duration: 5120ms;
+  --paul-skill1-cycle-duration: var(--paul-skill-cycle-duration);
+  --paul-skill2-frame-size: 400px;
+  --paul-skill2-sheet-shift: -6400px;
+  --paul-skill2-cast-duration: 1320ms;
+  --paul-skill2-cycle-duration: var(--paul-skill-cycle-duration);
+  --ultimate-cutscene-duration: 1500ms;
 }
 
 * {
@@ -476,8 +482,9 @@ button {
   image-rendering: auto;
   transform-origin: 50% 88%;
   animation: paul-basic-attack var(--paul-basic-attack-duration) steps(1, end) infinite,
-    paul-basic-motion var(--paul-basic-attack-duration) ease-in-out infinite;
-  will-change: background-image, transform;
+    paul-basic-motion var(--paul-basic-attack-duration) ease-in-out infinite,
+    paul-base-visibility var(--paul-skill2-cycle-duration) linear infinite;
+  will-change: background-image, transform, opacity;
 }
 
 .paul-skill1-sprite {
@@ -501,6 +508,30 @@ button {
   transform-origin: 43% 72%;
   animation: paul-skill1-frames var(--paul-skill1-cast-duration) steps(32, end) infinite,
     paul-skill1-window var(--paul-skill1-cycle-duration) linear infinite;
+  will-change: background-position, opacity, transform;
+}
+
+.paul-skill2-sprite {
+  position: absolute;
+  left: 50%;
+  bottom: -95px;
+  z-index: 3;
+  width: var(--paul-skill2-frame-size);
+  height: var(--paul-skill2-frame-size);
+  pointer-events: none;
+  background-image: url("../assets/폴_스킬2_별빛방어마법_16/paul_skill2_starlight_guard_safe400_sheet_horizontal.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  filter:
+    drop-shadow(0 0 10px rgba(134, 231, 255, 0.58))
+    drop-shadow(0 0 18px rgba(255, 241, 128, 0.42));
+  image-rendering: auto;
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px) scale(0.43);
+  transform-origin: 50% 72%;
+  animation: paul-skill2-frames var(--paul-skill2-cycle-duration) steps(1, end) infinite,
+    paul-skill2-window var(--paul-skill2-cycle-duration) cubic-bezier(0.2, 0.72, 0.22, 1) infinite;
   will-change: background-position, opacity, transform;
 }
 
@@ -676,6 +707,58 @@ button {
 
 .skill-card em.gold i {
   background: var(--gold);
+}
+
+.ultimate-cutscene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ultimate-cutscene::before,
+.ultimate-cutscene__image {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.ultimate-cutscene::before {
+  background: rgba(6, 7, 18, 0.62);
+}
+
+.ultimate-cutscene__image {
+  left: 50%;
+  top: 50%;
+  width: min(122%, 560px);
+  height: min(92%, 840px);
+  background-image: url("../assets/ultimate/paul_ultimate_cutin.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter:
+    drop-shadow(0 0 18px rgba(255, 244, 126, 0.5))
+    drop-shadow(0 20px 16px rgba(0, 0, 0, 0.24));
+  transform: translate(-50%, -47%) scale(0.76);
+  transform-origin: center;
+  will-change: opacity, transform;
+}
+
+.ultimate-cutscene.is-playing {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ultimate-cutscene.is-playing::before {
+  animation: ultimate-backdrop-dim var(--ultimate-cutscene-duration) ease-out both;
+}
+
+.ultimate-cutscene.is-playing .ultimate-cutscene__image {
+  animation: ultimate-cutscene-in-out var(--ultimate-cutscene-duration) cubic-bezier(0.16, 0.84, 0.22, 1) both;
 }
 
 .upgrade-panel {
@@ -1155,6 +1238,166 @@ button {
   100% {
     opacity: 0;
     transform: translateX(-42%) translateY(4px) scale(0.62);
+  }
+}
+
+@keyframes paul-skill2-frames {
+  0%,
+  41.9% {
+    background-position: 0 0;
+  }
+
+  42% {
+    background-position: 0 0;
+  }
+
+  43.6% {
+    background-position: -400px 0;
+  }
+
+  45.2% {
+    background-position: -800px 0;
+  }
+
+  46.8% {
+    background-position: -1200px 0;
+  }
+
+  48.4% {
+    background-position: -1600px 0;
+  }
+
+  50% {
+    background-position: -2000px 0;
+  }
+
+  51.6% {
+    background-position: -2400px 0;
+  }
+
+  53.2% {
+    background-position: -2800px 0;
+  }
+
+  54.8% {
+    background-position: -3200px 0;
+  }
+
+  56.4% {
+    background-position: -3600px 0;
+  }
+
+  58% {
+    background-position: -4000px 0;
+  }
+
+  59.6% {
+    background-position: -4400px 0;
+  }
+
+  61.2% {
+    background-position: -4800px 0;
+  }
+
+  62.8% {
+    background-position: -5200px 0;
+  }
+
+  64.4% {
+    background-position: -5600px 0;
+  }
+
+  66% {
+    background-position: -6000px 0;
+  }
+
+  67%,
+  100% {
+    background-position: var(--paul-skill2-sheet-shift) 0;
+  }
+}
+
+@keyframes paul-skill2-window {
+  0%,
+  39% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.43);
+  }
+
+  42% {
+    opacity: 0.9;
+    transform: translateX(-50%) translateY(2px) scale(0.45);
+  }
+
+  46%,
+  58% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-1px) scale(0.48);
+  }
+
+  62% {
+    opacity: 0.95;
+    transform: translateX(-50%) translateY(0) scale(0.47);
+  }
+
+  67%,
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(7px) scale(0.44);
+  }
+}
+
+@keyframes paul-base-visibility {
+  0%,
+  41.9% {
+    opacity: 1;
+  }
+
+  42%,
+  67% {
+    opacity: 0;
+  }
+
+  68%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ultimate-backdrop-dim {
+  0% {
+    opacity: 0;
+  }
+
+  10%,
+  78% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ultimate-cutscene-in-out {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -42%) scale(0.68);
+  }
+
+  12% {
+    opacity: 1;
+    transform: translate(-50%, -47%) scale(0.92);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -56%) scale(1.08);
   }
 }
 

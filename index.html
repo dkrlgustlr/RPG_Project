@@ -65,6 +65,7 @@
               <i style="width: 96%"></i>
             </div>
             <div class="paul-skill1-sprite" aria-hidden="true"></div>
+            <div class="paul-skill2-sprite" aria-hidden="true"></div>
             <div class="paul-sprite" role="img" aria-label="별 머리 마법사 폴"></div>
           </div>
 
@@ -99,12 +100,16 @@
             <span class="skill-icon shield" aria-hidden="true"></span>
             <em><i style="width: 68%"></i>7.1초</em>
           </button>
-          <button class="skill-card" type="button">
+          <button id="ultimateButton" class="skill-card" type="button">
             <strong>궁극기</strong>
             <span class="skill-icon comet" aria-hidden="true"></span>
             <em class="gold"><i style="width: 18%"></i>24.8초</em>
           </button>
         </section>
+
+        <div id="ultimateCutscene" class="ultimate-cutscene" aria-hidden="true">
+          <div class="ultimate-cutscene__image"></div>
+        </div>
 
         <section class="upgrade-panel" aria-label="강화">
           <div id="offlineNotice" class="notice hidden" role="status"></div>
