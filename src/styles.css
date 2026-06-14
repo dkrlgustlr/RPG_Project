@@ -17,6 +17,7 @@
   --red: #ef4c38;
   --green: #79d349;
   --paul-basic-attack-duration: 1080ms;
+  --slime-basic-attack-duration: 1120ms;
   --paul-projectile-duration: 880ms;
 }
 
@@ -475,12 +476,12 @@ button {
 .monster-sprite {
   width: 116px;
   height: 116px;
-  background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_01.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center bottom;
   image-rendering: auto;
-  animation: monster-idle 1900ms ease-in-out infinite;
+  animation: slime-basic-attack var(--slime-basic-attack-duration) steps(1, end) infinite;
+  will-change: background-image, transform;
 }
 
 .projectile-trail {
@@ -874,6 +875,88 @@ button {
 
   50% {
     transform: translateX(-50%) scale(1.035, 0.965);
+  }
+}
+
+@keyframes slime-basic-attack {
+  0% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_01.png");
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  6.25% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_02.png");
+    transform: translateX(-50%) translateY(4px) scale(1.08, 0.92);
+  }
+
+  12.5% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_03.png");
+    transform: translateX(-58%) translateY(6px) scale(1.14, 0.9);
+  }
+
+  18.75% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_04.png");
+    transform: translateX(-54%) translateY(5px) scale(1.1, 0.92);
+  }
+
+  25% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_05.png");
+    transform: translateX(-58%) translateY(3px) scale(1.12, 0.94);
+  }
+
+  31.25% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_06.png");
+    transform: translateX(-62%) translateY(4px) scale(1.16, 0.92);
+  }
+
+  37.5% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_07.png");
+    transform: translateX(-52%) translateY(0) scale(1.04);
+  }
+
+  43.75% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_08.png");
+    transform: translateX(-50%) translateY(-1px) scale(1.02);
+  }
+
+  50% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_09.png");
+    transform: translateX(-50%) translateY(3px) scale(1.08, 0.94);
+  }
+
+  56.25% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_10.png");
+    transform: translateX(-55%) translateY(4px) scale(1.11, 0.93);
+  }
+
+  62.5% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_11.png");
+    transform: translateX(-51%) translateY(1px) scale(1.03);
+  }
+
+  68.75% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_12.png");
+    transform: translateX(-50%) translateY(0) scale(1.01);
+  }
+
+  75% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_13.png");
+    transform: translateX(-50%) translateY(-1px) scale(1);
+  }
+
+  81.25% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_14.png");
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  87.5% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_15.png");
+    transform: translateX(-50%) translateY(1px) scale(1.02, 0.99);
+  }
+
+  93.75% {
+    background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_16.png");
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 }
 

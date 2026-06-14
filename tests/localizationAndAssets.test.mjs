@@ -31,9 +31,12 @@ test("idle RPG stylesheet builds a portrait phone-style game screen", async () =
   assert.match(styles, /paul_basic_attack_frame_01\.png/);
   assert.match(styles, /paul_basic_attack_frame_16\.png/);
   assert.match(styles, /--paul-basic-attack-duration:\s*1080ms/);
+  assert.match(styles, /--slime-basic-attack-duration:\s*1120ms/);
   assert.match(styles, /--paul-projectile-duration:\s*880ms/);
   assert.match(styles, /animation:\s*paul-basic-attack var\(--paul-basic-attack-duration\) steps\(1,\s*end\) infinite/);
+  assert.match(styles, /animation:\s*slime-basic-attack var\(--slime-basic-attack-duration\) steps\(1,\s*end\) infinite/);
   assert.match(styles, /@keyframes paul-basic-attack/);
+  assert.match(styles, /@keyframes slime-basic-attack/);
   assert.match(styles, /slime_basic_attack_left_frame_01\.png/);
   assert.match(styles, /\.skill-card\s*{/);
   assert.match(styles, /\.upgrade-panel\s*{/);
@@ -52,6 +55,19 @@ test("Paul battle sprite uses every provided basic attack frame in order", async
     "13", "14", "15", "16"
   ]);
   assert.doesNotMatch(styles, /star_mage_pose_05_cast_magic\.png/);
+});
+
+test("slime monster sprite uses every provided basic attack frame in order", async () => {
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+  const frameMatches = [...styles.matchAll(/slime_basic_attack_left_frame_(\d{2})\.png/g)]
+    .map((match) => match[1]);
+
+  assert.deepEqual(frameMatches, [
+    "01", "02", "03", "04",
+    "05", "06", "07", "08",
+    "09", "10", "11", "12",
+    "13", "14", "15", "16"
+  ]);
 });
 
 test("Paul basic attack projectile uses all supplied projectile frames", async () => {
