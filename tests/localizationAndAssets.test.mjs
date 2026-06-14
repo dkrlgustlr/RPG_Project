@@ -24,6 +24,7 @@ test("idle RPG stylesheet builds a portrait phone-style game screen", async () =
 
   assert.match(styles, /\.phone-shell\s*{[^}]*max-width:\s*460px/s);
   assert.match(styles, /\.game-screen\s*{[^}]*aspect-ratio:\s*9\s*\/\s*19\.5/s);
+  assert.match(styles, /starlight_meadow_morning_iphone_1170x2532\.png/);
   assert.match(styles, /\.resource-chip\s*{/);
   assert.match(styles, /\.stage-card\s*{/);
   assert.match(styles, /\.battlefield\s*{/);
@@ -33,7 +34,7 @@ test("idle RPG stylesheet builds a portrait phone-style game screen", async () =
   assert.match(styles, /--paul-projectile-duration:\s*880ms/);
   assert.match(styles, /animation:\s*paul-basic-attack var\(--paul-basic-attack-duration\) steps\(1,\s*end\) infinite/);
   assert.match(styles, /@keyframes paul-basic-attack/);
-  assert.match(styles, /animated-character-sprites-runtime\.png/);
+  assert.match(styles, /slime_basic_attack_left_frame_01\.png/);
   assert.match(styles, /\.skill-card\s*{/);
   assert.match(styles, /\.upgrade-panel\s*{/);
   assert.match(styles, /\.bottom-nav\s*{/);

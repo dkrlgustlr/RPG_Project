@@ -70,10 +70,13 @@ button {
   overflow: hidden;
   border: 3px solid #0a8fc9;
   border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 18%),
-    radial-gradient(circle at 13% 14%, #fff8aa 0 28px, rgba(255, 248, 170, 0.28) 29px 46px, transparent 47px),
-    linear-gradient(180deg, var(--sky) 0 52%, var(--meadow) 52% 100%);
+  background-color: var(--sky);
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 38%, rgba(5, 108, 80, 0.1) 100%),
+    url("../assets/배경/starlight_meadow_morning_iphone_1170x2532.png");
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
   box-shadow:
     0 18px 50px rgba(16, 80, 93, 0.28),
     inset 0 0 0 2px rgba(255, 255, 255, 0.34);
@@ -82,33 +85,7 @@ button {
 .game-screen::before,
 .game-screen::after {
   content: "";
-  position: absolute;
-  left: -10%;
-  right: -10%;
-  pointer-events: none;
-}
-
-.game-screen::before {
-  top: 20%;
-  height: 22%;
-  background:
-    radial-gradient(ellipse at 8% 72%, #ffffff 0 28px, transparent 29px),
-    radial-gradient(ellipse at 17% 78%, #dff5ff 0 42px, transparent 43px),
-    radial-gradient(ellipse at 26% 86%, #ffffff 0 50px, transparent 51px),
-    radial-gradient(ellipse at 77% 82%, #ffffff 0 48px, transparent 49px),
-    radial-gradient(ellipse at 91% 74%, #e0f5ff 0 58px, transparent 59px);
-  opacity: 0.94;
-}
-
-.game-screen::after {
-  bottom: 18.5%;
-  height: 34%;
-  background:
-    linear-gradient(180deg, transparent 0 14%, rgba(17, 122, 72, 0.28) 15% 17%, transparent 18%),
-    radial-gradient(ellipse at 18% 85%, #1d8a63 0 44px, transparent 45px),
-    radial-gradient(ellipse at 84% 84%, #218c5e 0 48px, transparent 49px),
-    linear-gradient(180deg, transparent 0 38%, #75d950 39% 100%);
-  clip-path: polygon(0 28%, 18% 36%, 36% 23%, 50% 38%, 72% 24%, 100% 35%, 100% 100%, 0 100%);
+  display: none;
 }
 
 .top-hud,
@@ -316,7 +293,7 @@ button {
   overflow: hidden;
   border-radius: 4px;
   background:
-    linear-gradient(180deg, transparent 0 50%, rgba(12, 149, 142, 0.65) 100%);
+    linear-gradient(180deg, transparent 0 46%, rgba(19, 119, 85, 0.16) 100%);
 }
 
 .sky-star,
@@ -326,6 +303,11 @@ button {
 .projectile-trail,
 .damage-number {
   position: absolute;
+}
+
+.sky-star,
+.planet {
+  display: none;
 }
 
 .sky-star {
@@ -493,11 +475,11 @@ button {
 .monster-sprite {
   width: 116px;
   height: 116px;
-  background-image: url("../assets/animated-character-sprites-runtime.png");
+  background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_01.png");
   background-repeat: no-repeat;
-  background-size: 400% 400%;
-  background-position: 0 33.333%;
-  image-rendering: pixelated;
+  background-size: contain;
+  background-position: center bottom;
+  image-rendering: auto;
   animation: monster-idle 1900ms ease-in-out infinite;
 }
 
