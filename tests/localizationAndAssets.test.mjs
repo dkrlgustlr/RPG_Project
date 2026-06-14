@@ -158,7 +158,7 @@ test("ultimate button triggers a 1.5 second cut-in illustration overlay", async 
   assert.match(styles, /--ultimate-cutscene-duration:\s*1500ms/);
   assert.match(styles, /paul_ultimate_cutin\.png/);
   assert.match(styles, /\.ultimate-cutscene\s*{[^}]*z-index:\s*3/s);
-  assert.match(styles, /\.ultimate-cutscene__image\s*{[^}]*top:\s*40%/s);
+  assert.match(styles, /\.ultimate-cutscene__image\s*{[^}]*top:\s*34%/s);
   assert.match(styles, /\.ultimate-cutscene__image\s*{[^}]*height:\s*min\(60%,\s*520px\)/s);
   assert.match(styles, /\.ultimate-cutscene__image\s*{[^}]*background-size:\s*contain/s);
   assert.match(styles, /\.ultimate-cutscene::before\s*{[^}]*background:\s*rgba\(6,\s*7,\s*18,\s*0\.62\)/s);

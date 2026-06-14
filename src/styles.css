@@ -733,7 +733,7 @@ button {
 
 .ultimate-cutscene__image {
   left: 50%;
-  top: 40%;
+  top: 34%;
   width: min(118%, 520px);
   height: min(60%, 520px);
   background-image: url("../assets/ultimate/paul_ultimate_cutin.png");
