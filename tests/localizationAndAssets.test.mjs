@@ -30,7 +30,7 @@ test("idle RPG stylesheet builds a portrait phone-style game screen", async () =
   assert.match(styles, /\.battlefield\s*{/);
   assert.match(styles, /paul_basic_attack_frame_01\.png/);
   assert.match(styles, /paul_basic_attack_frame_16\.png/);
-  assert.match(styles, /--paul-basic-attack-duration:\s*880ms/);
+  assert.match(styles, /--paul-basic-attack-duration:\s*1080ms/);
   assert.match(styles, /--paul-projectile-duration:\s*880ms/);
   assert.match(styles, /animation:\s*paul-basic-attack var\(--paul-basic-attack-duration\) steps\(1,\s*end\) infinite/);
   assert.match(styles, /@keyframes paul-basic-attack/);
