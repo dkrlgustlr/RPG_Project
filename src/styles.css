@@ -743,7 +743,7 @@ button {
   filter:
     drop-shadow(0 0 18px rgba(255, 244, 126, 0.5))
     drop-shadow(0 20px 16px rgba(0, 0, 0, 0.24));
-  transform: translate(-50%, -50%) scale(0.72);
+  transform: translate(-50%, -50%) scale(1.01);
   transform-origin: center;
   will-change: opacity, transform;
 }
@@ -1384,22 +1384,22 @@ button {
 @keyframes ultimate-cutscene-in-out {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.68);
+    transform: translate(-50%, -50%) scale(0.95);
   }
 
   12% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(0.84);
+    transform: translate(-50%, -50%) scale(1.18);
   }
 
   72% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(1.26);
   }
 
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.86);
+    transform: translate(-50%, -50%) scale(1.2);
   }
 }
 
