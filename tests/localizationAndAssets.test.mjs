@@ -158,12 +158,16 @@ test("ultimate button triggers a 1.5 second cut-in illustration overlay", async 
   assert.match(styles, /--ultimate-cutscene-duration:\s*1500ms/);
   assert.match(styles, /paul_ultimate_cutin\.png/);
   assert.match(styles, /\.ultimate-cutscene\s*{[^}]*z-index:\s*3/s);
+  assert.match(styles, /\.ultimate-cutscene__image\s*{[^}]*top:\s*48%/s);
+  assert.match(styles, /\.ultimate-cutscene__image\s*{[^}]*height:\s*min\(76%,\s*640px\)/s);
+  assert.match(styles, /\.ultimate-cutscene__image\s*{[^}]*background-size:\s*contain/s);
   assert.match(styles, /\.ultimate-cutscene::before\s*{[^}]*background:\s*rgba\(6,\s*7,\s*18,\s*0\.62\)/s);
   assert.match(styles, /\.ultimate-cutscene\.is-playing\s*{[^}]*visibility:\s*visible/s);
   assert.match(styles, /\.ultimate-cutscene\.is-playing::before\s*{[^}]*animation:\s*ultimate-backdrop-dim var\(--ultimate-cutscene-duration\) ease-out both/s);
   assert.match(styles, /\.ultimate-cutscene\.is-playing \.ultimate-cutscene__image\s*{[^}]*animation:\s*ultimate-cutscene-in-out var\(--ultimate-cutscene-duration\) cubic-bezier\(0\.16,\s*0\.84,\s*0\.22,\s*1\) both/s);
   assert.match(styles, /@keyframes ultimate-backdrop-dim/);
   assert.match(styles, /@keyframes ultimate-cutscene-in-out/);
+  assert.doesNotMatch(styles, /transform:\s*translate\(-50%,\s*-56%\)\s*scale\(1\.08\)/);
   assert.match(styles, /\.top-hud,\s*\.stage-card,\s*\.skill-card,\s*\.upgrade-panel,\s*\.nav-item,\s*\.boss-count-card\s*{[^}]*z-index:\s*2/s);
   assert.match(styles, /\.skill-bar\s*{[^}]*z-index:\s*2/s);
   assert.match(styles, /\.upgrade-panel\s*{[^}]*z-index:\s*4/s);
