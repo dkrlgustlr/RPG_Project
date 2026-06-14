@@ -157,7 +157,7 @@ test("ultimate button triggers a 1.5 second cut-in illustration overlay", async 
   assert.match(html, /class="ultimate-cutscene"/);
   assert.match(styles, /--ultimate-cutscene-duration:\s*1500ms/);
   assert.match(styles, /paul_ultimate_cutin\.png/);
-  assert.match(styles, /\.ultimate-cutscene\s*{[^}]*z-index:\s*1/s);
+  assert.match(styles, /\.ultimate-cutscene\s*{[^}]*z-index:\s*3/s);
   assert.match(styles, /\.ultimate-cutscene::before\s*{[^}]*background:\s*rgba\(6,\s*7,\s*18,\s*0\.62\)/s);
   assert.match(styles, /\.ultimate-cutscene\.is-playing\s*{[^}]*visibility:\s*visible/s);
   assert.match(styles, /\.ultimate-cutscene\.is-playing::before\s*{[^}]*animation:\s*ultimate-backdrop-dim var\(--ultimate-cutscene-duration\) ease-out both/s);
@@ -165,8 +165,9 @@ test("ultimate button triggers a 1.5 second cut-in illustration overlay", async 
   assert.match(styles, /@keyframes ultimate-backdrop-dim/);
   assert.match(styles, /@keyframes ultimate-cutscene-in-out/);
   assert.match(styles, /\.top-hud,\s*\.stage-card,\s*\.skill-card,\s*\.upgrade-panel,\s*\.nav-item,\s*\.boss-count-card\s*{[^}]*z-index:\s*2/s);
-  assert.match(styles, /\.skill-bar\s*{[^}]*z-index:\s*3/s);
-  assert.match(styles, /\.bottom-nav\s*{[^}]*z-index:\s*4/s);
+  assert.match(styles, /\.skill-bar\s*{[^}]*z-index:\s*2/s);
+  assert.match(styles, /\.upgrade-panel\s*{[^}]*z-index:\s*4/s);
+  assert.match(styles, /\.bottom-nav\s*{[^}]*z-index:\s*5/s);
   assert.match(game, /const ultimateButton = document\.querySelector\("#ultimateButton"\)/);
   assert.match(game, /const ultimateCutscene = document\.querySelector\("#ultimateCutscene"\)/);
   assert.match(game, /ULTIMATE_CUTSCENE_CLASS/);
