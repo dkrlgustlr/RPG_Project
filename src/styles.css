@@ -16,9 +16,13 @@
   --blue: #30a8ff;
   --red: #ef4c38;
   --green: #79d349;
-  --paul-basic-attack-duration: 1080ms;
-  --slime-basic-attack-duration: 1120ms;
+  --paul-basic-attack-duration: 1350ms;
+  --slime-basic-attack-duration: 1400ms;
   --paul-projectile-duration: 880ms;
+  --paul-skill1-frame-size: 313px;
+  --paul-skill1-sheet-shift: -10016px;
+  --paul-skill1-cast-duration: 1280ms;
+  --paul-skill1-cycle-duration: 5120ms;
 }
 
 * {
@@ -463,15 +467,41 @@ button {
 }
 
 .paul-sprite {
+  z-index: 1;
   width: 148px;
   height: 160px;
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: contain;
   image-rendering: auto;
+  transform-origin: 50% 88%;
   animation: paul-basic-attack var(--paul-basic-attack-duration) steps(1, end) infinite,
     paul-basic-motion var(--paul-basic-attack-duration) ease-in-out infinite;
   will-change: background-image, transform;
+}
+
+.paul-skill1-sprite {
+  position: absolute;
+  left: 50%;
+  bottom: -53px;
+  z-index: 4;
+  width: var(--paul-skill1-frame-size);
+  height: var(--paul-skill1-frame-size);
+  pointer-events: none;
+  background-image: url("../assets/폴_스킬1_별가루폭발_32/paul_skill1_stardust_burst_32_std313_sheet_horizontal.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  filter:
+    drop-shadow(0 0 10px rgba(197, 255, 72, 0.5))
+    drop-shadow(0 12px 6px rgba(34, 62, 29, 0.24));
+  image-rendering: auto;
+  opacity: 0;
+  transform: translateX(-42%) translateY(8px) scale(0.62);
+  transform-origin: 43% 72%;
+  animation: paul-skill1-frames var(--paul-skill1-cast-duration) steps(32, end) infinite,
+    paul-skill1-window var(--paul-skill1-cycle-duration) linear infinite;
+  will-change: background-position, opacity, transform;
 }
 
 .monster-sprite {
@@ -1061,36 +1091,70 @@ button {
     transform: translateX(-50%) translateY(0) rotate(0deg) scale(1);
   }
 
-  10% {
-    transform: translateX(-50%) translateY(-2px) rotate(-1deg) scale(1.01);
+  8% {
+    transform: translateX(-50%) translateY(-1px) rotate(-0.4deg) scale(1.005);
   }
 
+  16% {
+    transform: translateX(-51%) translateY(-2px) rotate(-0.8deg) scale(1.008, 0.998);
+  }
+
+  26% {
+    transform: translateX(-52%) translateY(-2px) rotate(-1deg) scale(1.01, 0.995);
+  }
+
+  38% {
+    transform: translateX(-52%) translateY(-1px) rotate(-0.8deg) scale(1.008);
+  }
+
+  50% {
+    transform: translateX(-51%) translateY(1px) rotate(1deg) scale(1.015, 0.99);
+  }
+
+  60% {
+    transform: translateX(-50%) translateY(-1px) rotate(0.6deg) scale(0.998, 1.006);
+  }
+
+  72% {
+    transform: translateX(-50%) translateY(0) rotate(0.2deg) scale(1.003, 0.998);
+  }
+
+  86% {
+    transform: translateX(-50%) translateY(1px) rotate(0deg) scale(1.004, 0.998);
+  }
+}
+
+@keyframes paul-skill1-frames {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: var(--paul-skill1-sheet-shift) 0;
+  }
+}
+
+@keyframes paul-skill1-window {
+  0% {
+    opacity: 0;
+    transform: translateX(-42%) translateY(8px) scale(0.62);
+  }
+
+  2%,
   22% {
-    transform: translateX(-52%) translateY(-3px) rotate(-2deg) scale(1.02, 0.99);
+    opacity: 1;
+    transform: translateX(-42%) translateY(0) scale(0.64);
   }
 
-  34% {
-    transform: translateX(-55%) translateY(-1px) rotate(-3deg) scale(1.03, 0.98);
+  25% {
+    opacity: 1;
+    transform: translateX(-43%) translateY(-2px) scale(0.66);
   }
 
-  44% {
-    transform: translateX(-56%) translateY(0) rotate(-2deg) scale(1.02);
-  }
-
-  52% {
-    transform: translateX(-53%) translateY(2px) rotate(2deg) scale(1.04, 0.97);
-  }
-
-  62% {
-    transform: translateX(-50%) translateY(-2px) rotate(1deg) scale(0.99, 1.02);
-  }
-
-  76% {
-    transform: translateX(-49%) translateY(0) rotate(0deg) scale(1.01, 0.99);
-  }
-
-  90% {
-    transform: translateX(-50%) translateY(1px) rotate(0deg) scale(1.01, 0.99);
+  28%,
+  100% {
+    opacity: 0;
+    transform: translateX(-42%) translateY(4px) scale(0.62);
   }
 }
 
