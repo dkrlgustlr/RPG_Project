@@ -8,6 +8,7 @@ import {
   getStageProgress,
   normalizeIdleUiState
 } from "./idleUiState.js";
+import { initializeBattleAnimations } from "./animationCatalog.js";
 
 const starDustEl = document.querySelector("#starDustValue");
 const starCrystalEl = document.querySelector("#starCrystalValue");
@@ -23,6 +24,8 @@ const ultimateButton = document.querySelector("#ultimateButton");
 const ultimateCutscene = document.querySelector("#ultimateCutscene");
 
 const ULTIMATE_CUTSCENE_CLASS = "is-playing";
+
+initializeBattleAnimations();
 
 let state = loadState();
 const offlineReward = calculateOfflineReward(state);

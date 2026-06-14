@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 
 const sources = [
   "src/idleUiState.js",
+  "src/animationCatalog.js",
   "src/game.js"
 ];
 

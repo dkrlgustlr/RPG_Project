@@ -43,6 +43,47 @@ test("idle RPG stylesheet builds a portrait phone-style game screen", async () =
   assert.match(styles, /\.bottom-nav\s*{/);
 });
 
+test("skill bar uses pixel image icons for Paul abilities", async () => {
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(styles, /\.skill-icon\.bolt\s*{[^}]*pixel_icon_basic_attack_circle\.png/s);
+  assert.match(styles, /\.skill-icon\.burst\s*{[^}]*pixel_icon_skill1_stardust_burst_circle\.png/s);
+  assert.match(styles, /\.skill-icon\.shield\s*{[^}]*pixel_icon_skill2_crystal_guard_circle_128\.png/s);
+  assert.match(styles, /\.skill-icon\.comet\s*{[^}]*pixel_icon_ultimate_meteor_shower_circle_128\.png/s);
+  assert.doesNotMatch(styles, /ultimate_meteor_piece_/);
+  assert.doesNotMatch(styles, /\.skill-icon\.bolt::before\s*{\s*content:/);
+  assert.doesNotMatch(styles, /\.skill-icon\.burst::before\s*{\s*content:/);
+  assert.doesNotMatch(styles, /\.skill-icon\.comet::before\s*{\s*content:/);
+});
+
+test("resource chips use pixel currency icons", async () => {
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(styles, /\.resource-chip\.dust\s+\.chip-icon\s*{[^}]*currency_stardust_glitter_dust_pixel_cutout\.png/s);
+  assert.match(styles, /\.chip-icon\.gem\s*{[^}]*currency_star_crystal_pixel_cutout\.png/s);
+  assert.match(styles, /\.chip-icon\s*{[^}]*background-size:\s*contain/s);
+  assert.match(styles, /\.chip-icon\s*{[^}]*text-indent:\s*-999px/s);
+});
+
+test("combatant health bars sit below Paul and monsters", async () => {
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(styles, /\.hp-bar\s*{[^}]*top:\s*auto/s);
+  assert.match(styles, /\.hp-bar\s*{[^}]*bottom:\s*-16px/s);
+  assert.match(styles, /\.combatant\.monster \.hp-bar\s*{[^}]*bottom:\s*-14px/s);
+});
+
+test("upgrade rows use pixel image icons for stats", async () => {
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(styles, /\.upgrade-icon\.sword\s*{[^}]*stat_icon_attack_swords_circle\.png/s);
+  assert.match(styles, /\.upgrade-icon\.heart\s*{[^}]*stat_icon_health_heart_circle_128\.png/s);
+  assert.match(styles, /\.upgrade-icon\.shield\s*{[^}]*stat_icon_defense_crystal_circle\.png/s);
+  assert.doesNotMatch(styles, /\.upgrade-icon\.sword::before\s*{\s*content:/);
+  assert.doesNotMatch(styles, /\.upgrade-icon\.heart::before\s*{\s*content:/);
+  assert.doesNotMatch(styles, /\.upgrade-icon\.shield::before\s*{\s*content:/);
+});
+
 test("Paul battle sprite uses every provided basic attack frame in order", async () => {
   const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
   const frameMatches = [...styles.matchAll(/paul_basic_attack_v2_frame_(\d{2})\.png/g)]
@@ -63,7 +104,7 @@ test("Paul battle sprite uses subtle motion smoothing for large pose changes", a
   const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
   const motionBlock = styles.slice(
     styles.indexOf("@keyframes paul-basic-motion"),
-    styles.indexOf("@keyframes paul-skill1-frames")
+    styles.indexOf("@keyframes projectile-trail-glow")
   );
 
   assert.match(styles, /\.paul-sprite\s*{[^}]*transform-origin:\s*50%\s*88%/s);
@@ -109,41 +150,26 @@ test("Paul basic attack projectile uses all supplied projectile frames", async (
   assert.match(styles, /@keyframes paul-projectile-frames/);
 });
 
-test("Paul skill 1 uses the 32 frame stardust burst sprite sheet", async () => {
+test("Paul skill 1 uses the 16 frame stardust burst sprite sheet", async () => {
   const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
-  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+  const game = await readFile(new URL("../src/game.js", import.meta.url), "utf8");
+  const bundle = await readFile(new URL("../src/game.bundle.js", import.meta.url), "utf8");
 
-  assert.match(html, /class="paul-skill1-sprite"/);
-  assert.match(styles, /--paul-skill-cycle-duration:\s*6200ms/);
-  assert.match(styles, /--paul-skill1-frame-size:\s*313px/);
-  assert.match(styles, /--paul-skill1-sheet-shift:\s*-10016px/);
-  assert.match(styles, /--paul-skill1-cast-duration:\s*1280ms/);
-  assert.match(styles, /--paul-skill1-cycle-duration:\s*var\(--paul-skill-cycle-duration\)/);
-  assert.match(styles, /paul_skill1_stardust_burst_32_std313_sheet_horizontal\.png/);
-  assert.match(styles, /animation:\s*paul-skill1-frames var\(--paul-skill1-cast-duration\) steps\(32,\s*end\) infinite,\s*paul-skill1-window var\(--paul-skill1-cycle-duration\) linear infinite/);
-  assert.match(styles, /@keyframes paul-skill1-frames/);
-  assert.match(styles, /background-position:\s*var\(--paul-skill1-sheet-shift\) 0/);
-  assert.doesNotMatch(styles, /calc\(var\(--paul-skill1-frame-size\) \* -32\)/);
-  assert.match(styles, /@keyframes paul-skill1-window/);
+  assert.doesNotMatch(html, /class="paul-skill1-sprite"/);
+  assert.match(game, /initializeBattleAnimations\(\)/);
+  assert.match(bundle, /paul_skill1_stardust_burst_safe313_sheet_horizontal\.png/);
+  assert.match(bundle, /paul-skill1-frames/);
 });
 
 test("Paul skill 2 uses the 16 frame starlight guard sprite sheet", async () => {
   const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
-  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+  const bundle = await readFile(new URL("../src/game.bundle.js", import.meta.url), "utf8");
 
-  assert.match(html, /class="paul-skill2-sprite"/);
-  assert.match(styles, /--paul-skill2-frame-size:\s*400px/);
-  assert.match(styles, /--paul-skill2-sheet-shift:\s*-6400px/);
-  assert.match(styles, /--paul-skill2-cast-duration:\s*1320ms/);
-  assert.match(styles, /--paul-skill2-cycle-duration:\s*var\(--paul-skill-cycle-duration\)/);
-  assert.match(styles, /paul_skill2_starlight_guard_safe400_sheet_horizontal\.png/);
-  assert.match(styles, /animation:\s*paul-skill2-frames var\(--paul-skill2-cycle-duration\) steps\(1,\s*end\) infinite,\s*paul-skill2-window var\(--paul-skill2-cycle-duration\) cubic-bezier\(0\.2,\s*0\.72,\s*0\.22,\s*1\) infinite/);
-  assert.match(styles, /@keyframes paul-skill2-frames/);
-  assert.match(styles, /background-position:\s*var\(--paul-skill2-sheet-shift\) 0/);
-  assert.match(styles, /54\.8%\s*{\s*background-position:\s*-3200px 0;\s*}/s);
-  assert.match(styles, /@keyframes paul-skill2-window/);
-  assert.match(styles, /paul-base-visibility var\(--paul-skill2-cycle-duration\) linear infinite/);
-  assert.match(styles, /@keyframes paul-base-visibility/);
+  assert.doesNotMatch(html, /class="paul-skill2-sprite"/);
+  assert.match(bundle, /paul_skill2_starlight_guard_sheet_horizontal\.png/);
+  assert.doesNotMatch(bundle, /paul_skill2_starlight_guard_safe400_sheet_horizontal\.png/);
+  assert.match(bundle, /paul-skill2-frames/);
+  assert.match(bundle, /@keyframes paul-base-visibility/);
 });
 
 test("ultimate button triggers a 1.5 second cut-in illustration overlay", async () => {
@@ -200,7 +226,7 @@ test("file protocol bundle contains the idle UI runtime without module imports",
   const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
   const bundle = await readFile(new URL("../src/game.bundle.js", import.meta.url), "utf8");
 
-  assert.match(html, /src="\.\/src\/game\.bundle\.js"/);
+  assert.match(html, /src="\.\/src\/game\.bundle\.js(?:\?[^"]+)?"/);
   assert.doesNotMatch(html, /type="module"/);
   assert.doesNotMatch(bundle, /^import\s/m);
   assert.match(bundle, /function createIdleUiState/);
