@@ -24,7 +24,7 @@ test("idle RPG stylesheet builds a portrait phone-style game screen", async () =
 
   assert.match(styles, /\.phone-shell\s*{[^}]*max-width:\s*460px/s);
   assert.match(styles, /\.game-screen\s*{[^}]*aspect-ratio:\s*9\s*\/\s*19\.5/s);
-  assert.match(styles, /starlight_meadow_morning_iphone_1170x2532\.png/);
+  assert.match(styles, /starlight_meadow_battle_platform\.png/);
   assert.match(styles, /\.resource-chip\s*{/);
   assert.match(styles, /\.stage-card\s*{/);
   assert.match(styles, /\.battlefield\s*{/);
@@ -68,6 +68,13 @@ test("slime monster sprite uses every provided basic attack frame in order", asy
     "09", "10", "11", "12",
     "13", "14", "15", "16"
   ]);
+});
+
+test("slime monster separates sprite frames from smooth body motion", async () => {
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(styles, /animation:\s*slime-basic-attack var\(--slime-basic-attack-duration\) steps\(1,\s*end\) infinite,\s*slime-basic-motion var\(--slime-basic-attack-duration\) ease-in-out infinite/);
+  assert.match(styles, /@keyframes slime-basic-motion/);
 });
 
 test("Paul basic attack projectile uses all supplied projectile frames", async () => {

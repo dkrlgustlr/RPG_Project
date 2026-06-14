@@ -74,7 +74,7 @@ button {
   background-color: var(--sky);
   background-image:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 38%, rgba(5, 108, 80, 0.1) 100%),
-    url("../assets/배경/starlight_meadow_morning_iphone_1170x2532.png");
+    url("../assets/배경/starlight_meadow_battle_platform.png");
   background-position: center, center;
   background-repeat: no-repeat, no-repeat;
   background-size: cover, cover;
@@ -480,7 +480,8 @@ button {
   background-size: contain;
   background-position: center bottom;
   image-rendering: auto;
-  animation: slime-basic-attack var(--slime-basic-attack-duration) steps(1, end) infinite;
+  animation: slime-basic-attack var(--slime-basic-attack-duration) steps(1, end) infinite,
+    slime-basic-motion var(--slime-basic-attack-duration) ease-in-out infinite;
   will-change: background-image, transform;
 }
 
@@ -881,82 +882,109 @@ button {
 @keyframes slime-basic-attack {
   0% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_01.png");
-    transform: translateX(-50%) translateY(0) scale(1);
   }
 
   6.25% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_02.png");
-    transform: translateX(-50%) translateY(4px) scale(1.08, 0.92);
   }
 
   12.5% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_03.png");
-    transform: translateX(-58%) translateY(6px) scale(1.14, 0.9);
   }
 
   18.75% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_04.png");
-    transform: translateX(-54%) translateY(5px) scale(1.1, 0.92);
   }
 
   25% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_05.png");
-    transform: translateX(-58%) translateY(3px) scale(1.12, 0.94);
   }
 
   31.25% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_06.png");
-    transform: translateX(-62%) translateY(4px) scale(1.16, 0.92);
   }
 
   37.5% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_07.png");
-    transform: translateX(-52%) translateY(0) scale(1.04);
   }
 
   43.75% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_08.png");
-    transform: translateX(-50%) translateY(-1px) scale(1.02);
   }
 
   50% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_09.png");
-    transform: translateX(-50%) translateY(3px) scale(1.08, 0.94);
   }
 
   56.25% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_10.png");
-    transform: translateX(-55%) translateY(4px) scale(1.11, 0.93);
   }
 
   62.5% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_11.png");
-    transform: translateX(-51%) translateY(1px) scale(1.03);
   }
 
   68.75% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_12.png");
-    transform: translateX(-50%) translateY(0) scale(1.01);
   }
 
   75% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_13.png");
-    transform: translateX(-50%) translateY(-1px) scale(1);
   }
 
   81.25% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_14.png");
-    transform: translateX(-50%) translateY(0) scale(1);
   }
 
   87.5% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_15.png");
-    transform: translateX(-50%) translateY(1px) scale(1.02, 0.99);
   }
 
   93.75% {
     background-image: url("../assets/슬라임_평타_16_왼쪽/slime_basic_attack_left_frame_16.png");
+  }
+}
+
+@keyframes slime-basic-motion {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  8% {
+    transform: translateX(-50%) translateY(3px) scale(1.06, 0.94);
+  }
+
+  16% {
+    transform: translateX(-55%) translateY(5px) scale(1.12, 0.9);
+  }
+
+  28% {
+    transform: translateX(-60%) translateY(4px) scale(1.16, 0.92);
+  }
+
+  38% {
+    transform: translateX(-53%) translateY(-1px) scale(1.05, 1.01);
+  }
+
+  48% {
+    transform: translateX(-50%) translateY(1px) scale(1.03, 0.97);
+  }
+
+  58% {
+    transform: translateX(-54%) translateY(4px) scale(1.1, 0.93);
+  }
+
+  68% {
+    transform: translateX(-50%) translateY(0) scale(1.02, 0.99);
+  }
+
+  78% {
+    transform: translateX(-50%) translateY(-1px) scale(0.99, 1.02);
+  }
+
+  90% {
+    transform: translateX(-50%) translateY(1px) scale(1.01, 0.99);
   }
 }
 
