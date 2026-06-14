@@ -733,9 +733,9 @@ button {
 
 .ultimate-cutscene__image {
   left: 50%;
-  top: 44%;
+  top: 50%;
   width: min(118%, 520px);
-  height: min(68%, 570px);
+  height: min(60%, 520px);
   background-image: url("../assets/ultimate/paul_ultimate_cutin.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -743,7 +743,7 @@ button {
   filter:
     drop-shadow(0 0 18px rgba(255, 244, 126, 0.5))
     drop-shadow(0 20px 16px rgba(0, 0, 0, 0.24));
-  transform: translate(-50%, -50%) scale(0.76);
+  transform: translate(-50%, -50%) scale(0.72);
   transform-origin: center;
   will-change: opacity, transform;
 }
@@ -1384,22 +1384,22 @@ button {
 @keyframes ultimate-cutscene-in-out {
   0% {
     opacity: 0;
-    transform: translate(-50%, -47%) scale(0.72);
+    transform: translate(-50%, -50%) scale(0.68);
   }
 
   12% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.86);
   }
 
   72% {
     opacity: 1;
-    transform: translate(-50%, -51%) scale(0.94);
+    transform: translate(-50%, -50%) scale(0.92);
   }
 
   100% {
     opacity: 0;
-    transform: translate(-50%, -53%) scale(0.92);
+    transform: translate(-50%, -50%) scale(0.88);
   }
 }
 
