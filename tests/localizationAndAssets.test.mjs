@@ -28,12 +28,12 @@ test("idle RPG stylesheet builds a portrait phone-style game screen", async () =
   assert.match(styles, /\.resource-chip\s*{/);
   assert.match(styles, /\.stage-card\s*{/);
   assert.match(styles, /\.battlefield\s*{/);
-  assert.match(styles, /paul_basic_attack_frame_01\.png/);
-  assert.match(styles, /paul_basic_attack_frame_16\.png/);
+  assert.match(styles, /paul_basic_attack_v2_frame_01\.png/);
+  assert.match(styles, /paul_basic_attack_v2_frame_16\.png/);
   assert.match(styles, /--paul-basic-attack-duration:\s*1080ms/);
   assert.match(styles, /--slime-basic-attack-duration:\s*1120ms/);
   assert.match(styles, /--paul-projectile-duration:\s*880ms/);
-  assert.match(styles, /animation:\s*paul-basic-attack var\(--paul-basic-attack-duration\) steps\(1,\s*end\) infinite/);
+  assert.match(styles, /animation:\s*paul-basic-attack var\(--paul-basic-attack-duration\) steps\(1,\s*end\) infinite,\s*paul-basic-motion var\(--paul-basic-attack-duration\) ease-in-out infinite/);
   assert.match(styles, /animation:\s*slime-basic-attack var\(--slime-basic-attack-duration\) steps\(1,\s*end\) infinite/);
   assert.match(styles, /@keyframes paul-basic-attack/);
   assert.match(styles, /@keyframes slime-basic-attack/);
@@ -45,7 +45,7 @@ test("idle RPG stylesheet builds a portrait phone-style game screen", async () =
 
 test("Paul battle sprite uses every provided basic attack frame in order", async () => {
   const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
-  const frameMatches = [...styles.matchAll(/paul_basic_attack_frame_(\d{2})\.png/g)]
+  const frameMatches = [...styles.matchAll(/paul_basic_attack_v2_frame_(\d{2})\.png/g)]
     .map((match) => match[1]);
 
   assert.deepEqual(frameMatches, [
@@ -54,6 +54,8 @@ test("Paul battle sprite uses every provided basic attack frame in order", async
     "09", "10", "11", "12",
     "13", "14", "15", "16"
   ]);
+  assert.match(styles, /assets\/폴_평타_16_개선본\/paul_basic_attack_v2_frame_01\.png/);
+  assert.match(styles, /@keyframes paul-basic-motion/);
   assert.doesNotMatch(styles, /star_mage_pose_05_cast_magic\.png/);
 });
 

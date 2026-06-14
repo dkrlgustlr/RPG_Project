@@ -469,7 +469,8 @@ button {
   background-repeat: no-repeat;
   background-size: contain;
   image-rendering: auto;
-  animation: paul-basic-attack var(--paul-basic-attack-duration) steps(1, end) infinite;
+  animation: paul-basic-attack var(--paul-basic-attack-duration) steps(1, end) infinite,
+    paul-basic-motion var(--paul-basic-attack-duration) ease-in-out infinite;
   will-change: background-image, transform;
 }
 
@@ -990,83 +991,106 @@ button {
 
 @keyframes paul-basic-attack {
   0% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_01.png");
-    transform: translateX(-50%) translateY(0);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_01.png");
   }
 
   6.25% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_02.png");
-    transform: translateX(-50%) translateY(-1px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_02.png");
   }
 
   12.5% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_03.png");
-    transform: translateX(-50%) translateY(-2px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_03.png");
   }
 
   18.75% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_04.png");
-    transform: translateX(-50%) translateY(0);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_04.png");
   }
 
   25% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_05.png");
-    transform: translateX(-50%) translateY(-1px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_05.png");
   }
 
   31.25% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_06.png");
-    transform: translateX(-50%) translateY(-2px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_06.png");
   }
 
   37.5% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_07.png");
-    transform: translateX(-50%) translateY(-1px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_07.png");
   }
 
   43.75% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_08.png");
-    transform: translateX(-50%) translateY(1px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_08.png");
   }
 
   50% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_09.png");
-    transform: translateX(-50%) translateY(0);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_09.png");
   }
 
   56.25% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_10.png");
-    transform: translateX(-50%) translateY(-1px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_10.png");
   }
 
   62.5% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_11.png");
-    transform: translateX(-50%) translateY(0);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_11.png");
   }
 
   68.75% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_12.png");
-    transform: translateX(-50%) translateY(1px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_12.png");
   }
 
   75% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_13.png");
-    transform: translateX(-50%) translateY(0);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_13.png");
   }
 
   81.25% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_14.png");
-    transform: translateX(-50%) translateY(-1px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_14.png");
   }
 
   87.5% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_15.png");
-    transform: translateX(-50%) translateY(0);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_15.png");
   }
 
   93.75% {
-    background-image: url("../assets/폴_평타_16/paul_basic_attack_frame_16.png");
-    transform: translateX(-50%) translateY(1px);
+    background-image: url("../assets/폴_평타_16_개선본/paul_basic_attack_v2_frame_16.png");
+  }
+}
+
+@keyframes paul-basic-motion {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(0deg) scale(1);
+  }
+
+  10% {
+    transform: translateX(-50%) translateY(-2px) rotate(-1deg) scale(1.01);
+  }
+
+  22% {
+    transform: translateX(-52%) translateY(-3px) rotate(-2deg) scale(1.02, 0.99);
+  }
+
+  34% {
+    transform: translateX(-55%) translateY(-1px) rotate(-3deg) scale(1.03, 0.98);
+  }
+
+  44% {
+    transform: translateX(-56%) translateY(0) rotate(-2deg) scale(1.02);
+  }
+
+  52% {
+    transform: translateX(-53%) translateY(2px) rotate(2deg) scale(1.04, 0.97);
+  }
+
+  62% {
+    transform: translateX(-50%) translateY(-2px) rotate(1deg) scale(0.99, 1.02);
+  }
+
+  76% {
+    transform: translateX(-49%) translateY(0) rotate(0deg) scale(1.01, 0.99);
+  }
+
+  90% {
+    transform: translateX(-50%) translateY(1px) rotate(0deg) scale(1.01, 0.99);
   }
 }
 
