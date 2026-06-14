@@ -733,7 +733,7 @@ button {
 
 .ultimate-cutscene__image {
   left: 50%;
-  top: 50%;
+  top: 40%;
   width: min(118%, 520px);
   height: min(60%, 520px);
   background-image: url("../assets/ultimate/paul_ultimate_cutin.png");
@@ -1389,17 +1389,17 @@ button {
 
   12% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(0.86);
+    transform: translate(-50%, -50%) scale(0.84);
   }
 
   72% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(0.92);
+    transform: translate(-50%, -50%) scale(0.9);
   }
 
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.88);
+    transform: translate(-50%, -50%) scale(0.86);
   }
 }
 
